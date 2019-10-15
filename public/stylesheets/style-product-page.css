@@ -1,0 +1,33 @@
+
+
+  .modal-dialog {
+    margin: auto;
+    position: fixed;
+    width: 320px;
+    height: 100%;
+}
+
+.modal-dialog {
+    right: -320px;
+    
+		-webkit-transform: translate3d(0%, 0, 0) !important;
+        -ms-transform: translate3d(0%, 0, 0) !important;
+         -o-transform: translate3d(0%, 0, 0) !important;
+            transform: translate3d(0%, 0, 0) !important;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out !important;
+        -moz-transition: opacity 0.3s linear, right 0.3s ease-out !important;
+          -o-transition: opacity 0.3s linear, right 0.3s ease-out !important;
+             transition: opacity 0.3s linear, right 0.3s ease-out !important;
+}
+div#cart.modal.show .modal-dialog {
+    right: 0;
+}
+.product-price-group .product-price{
+    color: rgba(78, 89, 93, 0.7);
+    text-decoration: line-through;
+}
+.product-price-group .product-sale-price{
+    color: cornflowerblue;
+    font-size: 1.5rem;
+    font-weight: bold
+}
