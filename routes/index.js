@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 
 var newUser=require('../DB/create/newUser');
 var getManyUser=require('../DB/get/getManyUser');
+var updateUser=require('../DB/update/updateUser');
+var deleteUser=require('../DB/delete/deleteUser');
 
 
 
@@ -14,25 +16,26 @@ router.get('/', function (req, res, next) {
 router.get('/test', (req, res, next) => {
   res.send("did it :)")
 })
+
+
+
+
+//trang admin
 router.get('/admin',(req,res,next)=>{
   res.render('./pages/dashboard')
 })
-router.post('/createUser',(req,res,next)=>{
-  newUser(req.body.firstName,req.body.lastName,req.body.email,req.body.password);
-  res.send("got it, thanks")
-})
+router.post('/createUser',newUser)
 router.post('/getManyUser',getManyUser);
+router.put('/UserEdit',updateUser)
+router.delete('/UserEdit',deleteUser)
 
+
+
+//trang login
 router.get('/signin',(req,res,next)=>{
   res.render('./pages/signin');
 
 })
-
-router.put('/UserEdit',(req,res,next)=>{
-  console.log(req.body.email);
-  res.send("ok :)")
-})
-
 router.get('/login',(req,res,next)=>{
   res.render('./pages/signin')
 })

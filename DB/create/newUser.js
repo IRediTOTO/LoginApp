@@ -4,21 +4,21 @@ var mongoose = require('mongoose');
 var User = require('../models/usersModel');
 
 
-function newUser(firstName1,lastName1,password1,email1){
+function newUser(req,res,next){
   mongoose.connect('mongodb://localhost:27017/Project1',{
     useNewUrlParser: true,
     useUnifiedTopology: true
   }, (err) => {
     if (err) throw err;
-    console.log("connect ok :)");
+    console.log("connect ok, ready to create new user :)");
     var Mee = new User({
       _id: new mongoose.Types.ObjectId(),
       name: {
-        firstName:firstName1,
-        lastName:lastName1
+        firstName:req.body.firstName,
+        lastName:req.body.lastName
       },
-      password:password1,
-      email:email1,
+      password:req.body.password,
+      email:req.body.email,
       role: 1
     });
     Mee.save((err)=>{
