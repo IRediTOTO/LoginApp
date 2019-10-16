@@ -3,16 +3,16 @@ var User= require('../models/usersModel');
 
 
 function updateUser(req,res,next){
+    
   mongoose.connect('mongodb://localhost:27017/Project1',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 },(err)=>{
   if(err) throw err;
-  console.log("connected, ready to get many user :)");
-  User.find().sort('-_id').limit(parseInt(req.body.number)).exec((err,result)=>{
-    if (err) throw err;
-    res.json(result)
-  })
+  console.log("connected, ready to update an user :)");
+  User.findByIdAndUpdate({_id:req.body.id},{$set:{
+
+  }})
 })
 }
 

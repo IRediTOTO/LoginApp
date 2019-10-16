@@ -161,5 +161,21 @@
   <!-- Include scripts -->
   <% include ../partials/scripts %>
 </body>
-
+<script>
+$('#createNewUser').click(function (e) {
+  $.ajax({
+    type: "POST",
+    url: "/createUser",
+    data: {
+      firstName: $('#firstName').val(), 
+      lastName: $('#lastName').val(),
+      email: $('#email').val(),
+      password: $('#password').val(),
+    },
+    success: function (response) {
+      console.log(response)
+    }
+  });
+})
+</script>
 </html>
