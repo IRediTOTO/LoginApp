@@ -1,8 +1,8 @@
 let jwt = require('jsonwebtoken');
 let con = require('../../../config/connet');
 var loadjwt = async(req,res,next)=>{
-    let email = req.body.email
-    let pass = req.body.pass
+    let email = req.query.email
+    let pass = req.query.pass
     let userId =  await con.findOne({UserEmail:email,UserPassword:pass}).exec();
         if(userId.UserEmail){
             var token = jwt.sign({userId} , 'shhhhh',{ expiresIn: 60 * 60 });

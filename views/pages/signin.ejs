@@ -30,10 +30,10 @@
     </div>
   </main>
   <%- include('../partials/footer.ejs'); %>
-  <script src="../javascripts/admin.js"></script>
+  <!-- <script src="../javascripts/admin.js"></script> -->
 </body>
 <script>
-  $('#createNewUser').click(function (e) {
+  $('#btn-submit').click(function (e) {
   $.ajax({
     type: "GET",
     url: "/users/jwt",
@@ -42,7 +42,8 @@
       pass: $('#exampleInputPassword1').val(),
     },
     success: function (response) {
-      console.log(response)
+      window.localStorage.setItem('token',response.token);
+      window.location.href ='/admin'
     }
   });
 })

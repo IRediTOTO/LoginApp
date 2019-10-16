@@ -4,8 +4,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-var apiuser = require('../public/javascripts/apiUser');
-var jwt = require('../public/javascripts/jwt/checklogin');
+var apiuser = require('../public/js/apiUser');
+var jwt = require('../public/js/jwt/checklogin');
 /* GET users listing. */
 router.get('/jwt',jwt.loadjwt);
 router.get('/getAll', apiuser.getAll);
