@@ -3,7 +3,7 @@ $('#createNewUser').click(function (e) {
     type: "POST",
     url: "/createUser",
     data: {
-      firstName: $('#firstName').val(),
+      firstName: $('#firstName').val(), 
       lastName: $('#lastName').val(),
       email: $('#email').val(),
       password: $('#password').val(),

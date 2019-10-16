@@ -25,7 +25,9 @@ router.post('/createUser',(req,res,next)=>{
 })
 router.post('/getManyUser',getManyUser);
 
-
+router.get('/login',(req,res,next)=>{
+  res.render('./pages/signin')
+})
 
 
 
