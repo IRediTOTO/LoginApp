@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 var newUser=require('../DB/create/newUser');
+var getManyUser=require('../DB/get/getManyUser');
 
 
 
@@ -22,6 +23,7 @@ router.post('/createUser',(req,res,next)=>{
   console.log(req.body.firstName,req.body.lastName,req.body.email,req.body.password);
   res.send("got it, thanks")
 })
+router.post('/getManyUser',getManyUser);
 
 
 
