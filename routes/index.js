@@ -18,13 +18,20 @@ router.get('/admin',(req,res,next)=>{
   res.render('./pages/dashboard')
 })
 router.post('/createUser',(req,res,next)=>{
-
   newUser(req.body.firstName,req.body.lastName,req.body.email,req.body.password);
-  console.log(req.body.firstName,req.body.lastName,req.body.email,req.body.password);
   res.send("got it, thanks")
 })
 router.post('/getManyUser',getManyUser);
 
+router.get('/signin',(req,res,next)=>{
+  res.render('./pages/signin');
+
+})
+
+router.put('/UserEdit',(req,res,next)=>{
+  console.log(req.body.email);
+  res.send("ok :)")
+})
 
 
 
