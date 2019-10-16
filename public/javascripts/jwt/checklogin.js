@@ -1,11 +1,11 @@
 let jwt = require('jsonwebtoken');
-
-var loadjwt = (res,req,next)=>{
+let con = require('../../../config/connet');
+var loadjwt = async(req,res,next)=>{
     let email = req.body.email
     let pass = req.body.pass
-    if(username && password){
-        if(userId.length){
-            var token = jwt.sign({ username,password }, 'shhhhh',{ expiresIn: 60 * 60 });
+    let userId =  await con.findOne({UserEmail:email,UserPassword:pass}).exec();
+        if(userId.UserEmail){
+            var token = jwt.sign({userId} , 'shhhhh',{ expiresIn: 60 * 60 });
             return res.json({
                 success: true,
                 message: 'Authentication successful!',
@@ -16,13 +16,7 @@ var loadjwt = (res,req,next)=>{
                 success: false,
                 message: 'Incorrect username or password'
             });
-    }else{
-        res.status(400).json({
-            succsess:false,
-            message:'Authentication failed! Please check the request'
-        });
     }
-}
 var ckeckToken = (req,res,next) =>{
     var token = req.headers.token;
     if(token){
@@ -44,3 +38,8 @@ var ckeckToken = (req,res,next) =>{
         });
     };
 };
+
+module.exports = {
+    loadjwt,
+    ckeckToken
+}
