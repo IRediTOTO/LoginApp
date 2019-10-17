@@ -8,7 +8,7 @@ var updateUser=require('../DB/update/updateUser');
 var deleteUser=require('../DB/delete/deleteUser');
 var newProduct=require('../DB/create/newProduct');
 var getManyProduct=require('../DB/get/getManyProduct');
-// var updateProduct=require('../DB/update/updateProduct');
+var updateProduct=require('../DB/update/updateProduct');
 // var deleteProduct=require('../DB/delete/deleteProduct');
 
 
@@ -83,6 +83,41 @@ router.post('/createProduct',(req, res,next) => {
   });
 },newProduct);
 router.post('/getManyProduct',getManyProduct);
+router.put('/ProductEdit',(req,res,next)=>{
+  upload(req, res, (err) => {
+    console.log(req.file)
+    if(err){
+      throw err;
+    } else {
+      if(req.file == undefined){
+        next()
+      } else {
+        next()
+      }
+    }
+  });
+},updateProduct)
+router.post('/upload',(req,res,next)=>{
+  upload(req, res, (err) => {
+    if(err){
+      throw err;
+    } else {
+      if(req.file == undefined){
+        next()
+      } else {
+        next()
+      }
+    }
+  });
+})
+
+
+
+
+
+
+
+
 
 
 //trang login
