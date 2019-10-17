@@ -84,7 +84,7 @@
                   <h3 class="mb-0">User list</h3>
                 </div>
                 <div class="col text-right">
-                  <button type="button" name="" id="button-load-all" class="btn btn-primary" >Load all
+                  <button type="button" name="" id="button-load-all" class="btn btn-primary">Load all
                     user</button>
 
                 </div>
@@ -104,7 +104,7 @@
                   </tr>
                 </thead>
                 <tbody id="my-tbody">
-                  
+
 
                 </tbody>
               </table>
@@ -120,7 +120,7 @@
                   <h3 class="mb-0">Products List</h3>
                 </div>
                 <div class="col text-right">
-                  <button type="button" name="" id="button-load-all" class="btn btn-primary" >Load all
+                  <button type="button" name="" id="button-load-all" class="btn btn-primary">Load all
                     product</button>
 
                 </div>
@@ -140,7 +140,7 @@
                   </tr>
                 </thead>
                 <tbody id="my-tbody">
-                  
+
 
                 </tbody>
               </table>
@@ -149,25 +149,90 @@
         </div>
 
       </div>
-      <div class="container">
+      <div class="container mt-5">
         <div class="row">
-          <form>
-            <div class="form-group">
-              <input type="name" class="form-control" id="firstName" name="firstName" placeholder="firstName">
-            </div>
-            <div class="form-group">
-              <input type="name" class="form-control" id="lastName" name="lastName" placeholder="lastName">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            </div>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Create new User
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProduct">
+            Create new Product
+          </button>
 
-            <button type="button" id="createNewUser" class="btn btn-primary">Tạo user mới</button>
-          </form>
+          <!-- Modal new user-->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <input type="name" class="form-control" id="firstName" name="firstName" placeholder="firstName">
+                    </div>
+                    <div class="form-group">
+                      <input type="name" class="form-control" id="lastName" name="lastName" placeholder="lastName">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+
+                    <button type="button" id="createNewUser" class="btn btn-primary">Create new User</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal new product -->
+          <div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="/createProduct" method="POST" enctype="multipart/form-data">
+                    <!-- <div class="form-group">
+                      <input type="name" class="form-control" id="productName" name="productName"
+                        placeholder="firstName">
+                    </div>
+                    <div class="form-group">
+                      <input type="name" class="form-control" id="productBrand" name="productBrand"
+                        placeholder="lastName">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" id="productPrice" name="productPrice"
+                        aria-describedby="emailHelp" placeholder="Enter email">
+                    </div> -->
+                    <div class="form-group">
+                      <input type="file" class="form-control-file" id="productImage" name="productImage">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tạo product mới</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <!-- Footer -->
@@ -177,21 +242,5 @@
   <!-- Include scripts -->
   <% include ../partials/scripts %>
 </body>
-<script>
-$('#createNewUser').click(function (e) {
-  $.ajax({
-    type: "POST",
-    url: "/createUser",
-    data: {
-      firstName: $('#firstName').val(), 
-      lastName: $('#lastName').val(),
-      email: $('#email').val(),
-      password: $('#password').val(),
-    },
-    success: function (response) {
-      console.log(response)
-    }
-  });
-})
-</script>
+
 </html>

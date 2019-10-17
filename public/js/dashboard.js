@@ -3,16 +3,18 @@ $('#createNewUser').click(function (e) {
     type: "POST",
     url: "/createUser",
     data: {
-      firstName: $('#firstName').val(),
-      lastName: $('#lastName').val(),
-      email: $('#email').val(),
-      password: $('#password').val(),
+      productName: $('#productName').val(),
+      productBrand: $('#productBrand').val(),
+      productPrice: $('#productPrice').val(),
+      productImage: $('#productImage').val(),
     },
     success: function (response) {
       console.log(response)
     }
   });
 })
+
+//$('#createProduct').click
 
 
 var memory = -1;
