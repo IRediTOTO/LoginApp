@@ -3,10 +3,10 @@ $('#createNewUser').click(function (e) {
     type: "POST",
     url: "/createUser",
     data: {
-      productName: $('#productName').val(),
-      productBrand: $('#productBrand').val(),
-      productPrice: $('#productPrice').val(),
-      productImage: $('#productImage').val(),
+      firstName: $('#firstName').val(),
+      lastName: $('#lastName').val(),
+      email: $('#email').val(),
+      password: $('#password').val(),
     },
     success: function (response) {
       console.log(response)
