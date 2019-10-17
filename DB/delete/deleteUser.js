@@ -9,7 +9,7 @@ function deleteUser(req,res,next){
   useUnifiedTopology: true
 },(err)=>{
   if(err) throw err;
-  console.log("connected, ready to update an user :)");
+  console.log("connected, ready to delete an user :)");
 
   User.findByIdAndDelete({_id:req.body.id}).exec((err,result)=>{
 if(err) throw err;

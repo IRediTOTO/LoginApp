@@ -1,14 +1,14 @@
 var mongoose=require('mongoose');
-var User= require('../models/usersModel');
+var Product= require('../models/productsModel');
 
 
-function getManyUser(req,res,next){
+function getManyProduct(req,res,next){
   mongoose.connect('mongodb://localhost:27017/Project1',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 },(err)=>{
   if(err) throw err;
-  console.log("connected, ready to get many user :)");
+  console.log("connected, ready to get many product :)");
   User.find().sort('-_id').limit(parseInt(req.body.number)).exec((err,result)=>{
     if (err) throw err;
     res.json(result)
@@ -16,4 +16,4 @@ function getManyUser(req,res,next){
 })
 }
 
-module.exports=getManyUser;
+module.exports=getManyProduct;

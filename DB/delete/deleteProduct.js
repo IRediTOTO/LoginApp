@@ -1,15 +1,15 @@
 var mongoose=require('mongoose');
-var User= require('../models/usersModel');
+var Product= require('../models/productsModel');
 
 
-function deleteUser(req,res,next){
+function deleteProduct(req,res,next){
     
   mongoose.connect('mongodb://localhost:27017/Project1',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 },(err)=>{
   if(err) throw err;
-  console.log("connected, ready to update an user :)");
+  console.log("connected, ready to delete an user :)");
 
   User.findByIdAndDelete({_id:req.body.id}).exec((err,result)=>{
 if(err) throw err;

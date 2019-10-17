@@ -3,11 +3,11 @@ var mongoose = require('mongoose');
 var productSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   
-  name: { type: String },
-  brand: {type: String},
-  price: { type: Number},
-  image: [{ type: String }]
+  productName: { type: String },
+  productBrand: {type: String},
+  productPrice: { type: Number},
+  productImage: [{ type: String }]
 })
 
-var Product = mongoose.model('Product', userSchema);
+var Product = mongoose.model('Product', productSchema);
 module.exports =  Product

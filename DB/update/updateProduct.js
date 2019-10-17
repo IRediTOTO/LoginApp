@@ -1,5 +1,5 @@
 var mongoose=require('mongoose');
-var User= require('../models/usersModel');
+var User= require('../models/productsModel');
 
 
 function updateUser(req,res,next){

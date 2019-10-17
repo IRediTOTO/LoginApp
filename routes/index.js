@@ -6,7 +6,10 @@ var newUser=require('../DB/create/newUser');
 var getManyUser=require('../DB/get/getManyUser');
 var updateUser=require('../DB/update/updateUser');
 var deleteUser=require('../DB/delete/deleteUser');
-
+var newProduct=require('../DB/create/newProduct');
+var getManyProduct=require('../DB/get/getManyProduct');
+// var updateProduct=require('../DB/update/updateProduct');
+// var deleteProduct=require('../DB/delete/deleteProduct');
 
 
 
@@ -66,27 +69,20 @@ router.post('/getManyUser',getManyUser);
 router.put('/UserEdit',updateUser)
 router.delete('/UserEdit',deleteUser)
 
-router.post('/createProduct',(req, res) => {
+router.post('/createProduct',(req, res,next) => {
   upload(req, res, (err) => {
     if(err){
-      res.render('./pages/dashboard', {
-        msg: err
-      });
+      throw err;
     } else {
       if(req.file == undefined){
-        res.render('./pages/dashboard', {
-          msg: 'Error: No File Selected!'
-        });
+        next()
       } else {
-        console.log(req.file)
-        res.render('./pages/dashboard', {
-          msg: 'File Uploaded!',
-          file: `uploads/${req.file.filename}`
-        });
+        next()
       }
     }
   });
-})
+},newProduct);
+router.post('/getManyProduct',getManyProduct);
 
 
 //trang login

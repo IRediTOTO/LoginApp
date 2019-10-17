@@ -1,8 +1,8 @@
 var mongoose=require('mongoose');
-var User= require('../models/usersModel');
+var Product= require('../models/productsModel');
 
 
-function getAnUser(email){
+function getAnProduct(email){
   mongoose.connect('mongodb://localhost:27017/Project1',{
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -18,4 +18,4 @@ function getAnUser(email){
   })
 })
 }
-module.exports=getAnUser;
+module.exports=getAnProduct;
