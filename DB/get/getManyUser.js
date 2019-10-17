@@ -11,7 +11,7 @@ function getManyUser(req,res,next){
   console.log("connected, ready to get many user :)");
   User.find().sort('-_id').limit(parseInt(req.body.number)).exec((err,result)=>{
     if (err) throw err;
-    res.json(result)
+    res.json(result) 
   })
 })
 }

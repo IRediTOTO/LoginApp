@@ -9,7 +9,7 @@ function getManyProduct(req,res,next){
 },(err)=>{
   if(err) throw err;
   console.log("connected, ready to get many product :)");
-  User.find().sort('-_id').limit(parseInt(req.body.number)).exec((err,result)=>{
+  Product.find().sort('-_id').limit(parseInt(req.body.number)).exec((err,result)=>{
     if (err) throw err;
     res.json(result)
   })
