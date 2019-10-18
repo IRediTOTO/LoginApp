@@ -10,6 +10,7 @@ var newProduct=require('../DB/create/newProduct');
 var getManyProduct=require('../DB/get/getManyProduct');
 var updateProduct=require('../DB/update/updateProduct');
 // var deleteProduct=require('../DB/delete/deleteProduct');
+var getNumberProducts=require('../DB/get/getNumberProducts');
 
 
 
@@ -61,6 +62,7 @@ router.get('/test', (req, res, next) => {
 
 
 //trang admin
+  //User
 router.get('/admin',(req,res,next)=>{
   res.render('./pages/dashboard')
 })
@@ -69,6 +71,7 @@ router.post('/getManyUser',getManyUser);
 router.put('/UserEdit',updateUser)
 router.delete('/UserEdit',deleteUser)
 
+  //Product
 router.post('/createProduct',(req, res,next) => {
   upload(req, res, (err) => {
     if(err){
@@ -128,8 +131,11 @@ router.get('/login',(req,res,next)=>{
   res.render('./pages/signin')
 })
 
-// trang product
-// router.post('/api/',req)
+// API cho trang product
+router.post('/api',getNumberProducts);
+router.get('/api/:numpage',(req,res,next)=>{
+res.json("give me some thing :("+ req.params.numpage)
+})
 
 
 

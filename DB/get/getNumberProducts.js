@@ -1,13 +1,12 @@
 var mongoose=require('mongoose');
-var User= require('../models/productsModel');
+var Product= require('../models/productsModel');
 
 
-function getManyUser(req,res,next){
-  User.find().sort('-_id').limit(parseInt(req.body.number)).exec((err,result)=>{
+function getNumberProducts(req,res,next){
+  Product.countDocuments().exec((err,result)=>{
     if (err) throw err;
-    res.json(result)
-  })
-
+    res.json(result) 
+  });
 }
 
-module.exports=getManyUser;
+module.exports=getNumberProducts; 

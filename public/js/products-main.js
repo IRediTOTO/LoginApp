@@ -1,13 +1,15 @@
 $(document).ready(function () {
   $.ajax({
+    method:'POST',
     url: "./api/",
     headers:{"token":"999999"},
     success: function (result) {
       if (result > 0) {
+        console.log("day la ket qua:",result)
         taonut(result);
         getDataFirstTime(result);
 
-      }
+      } 
     }
   })
   function taonut(pages) {
@@ -39,15 +41,18 @@ $(document).ready(function () {
   }
   function getdata(pagenum) {
     $.ajax({
-      url: "./api/" + (pagenum) + "",
+      method:"POST",
+      url: "./api/" + pagenum + "",
+      data:{
+        pinap:pagenum
+      },
       success: function (result) {
         $('.card-ajax').fadeIn();
         var containter = $('.card-ajax');
         containter.empty();
         console.log(this.url);
-
+        console.log(result)
         if (result == '') {
-          console.log('empty object')
           containter.append("<h1>Không có dữ liệu nào</h1>")
         } else {
           var html1 = ` <div class="col-md-4 my-3 px-2 my-cards">
@@ -78,7 +83,7 @@ $(document).ready(function () {
         }
       },
       error: function (error) {
-        console.log(console.error());
+        console.log(error);
       }
     });
   }
