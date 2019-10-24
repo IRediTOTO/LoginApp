@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var  passport = require("passport")
+
 
 var newUser=require('../DB/create/newUser');
 var getManyUser=require('../DB/get/getManyUser');
@@ -120,22 +122,37 @@ router.post('/upload',(req,res,next)=>{
 
 
 
+const initPassportLocal = require("../config/controler/passport/local")
 
-
-
+initPassportLocal();
 //trang login
-router.get('/signin',(req,res,next)=>{
+router.get('/login',(req,res,next)=>{
   res.render('./pages/signin');
 })
-router.get('/login',(req,res,next)=>{
-  res.render('./pages/signin')
-})
+
+
+router.post('/login',
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  }))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // API cho trang product
 router.post('/api',getNumberProducts);
-router.get('/api/:numpage',(req,res,next)=>{
-res.json("give me some thing :("+ req.params.numpage)
-})
+router.post('/api/:numpage',getManyProduct)
 
 
 

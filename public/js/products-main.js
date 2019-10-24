@@ -43,8 +43,8 @@ $(document).ready(function () {
     $.ajax({
       method:"POST",
       url: "./api/" + pagenum + "",
-      data:{
-        pinap:pagenum
+      data:{ 
+        skip:15
       },
       success: function (result) {
         $('.card-ajax').fadeIn();
@@ -72,11 +72,9 @@ $(document).ready(function () {
           var $aaa = $('<div />', { html: html1 }); // câu này khó hiểu quá :(
 
           for (let i = 0; i < Object.keys(result).length; i++) {
-            $aaa.find('img').attr('src', result[i].img);
+            $aaa.find('img').attr('src', "/uploads/"+result[i].productImage);
             $aaa.find('.card-title').text(result[i].title);
             $aaa.find('.btn.btn-primary').text(result[i].bt_content);
-
-
             containter.append($aaa.html())
 
           }
@@ -84,7 +82,7 @@ $(document).ready(function () {
       },
       error: function (error) {
         console.log(error);
-      }
+      } 
     });
   }
 
