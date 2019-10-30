@@ -66,6 +66,12 @@ router.get('/test', (req, res, next) => {
 //trang admin
   //User
 router.get('/admin',(req,res,next)=>{
+  if (req.isAuthenticated()) {
+		next();
+	} else {
+		res.redirect('/login')
+	}
+},(req,res,next)=>{
   res.render('./pages/dashboard')
 })
 router.post('/createUser',newUser)
@@ -87,7 +93,7 @@ router.post('/createProduct',(req, res,next) => {
     }
   });
 },newProduct);
-router.post('/getManyProduct',getManyProduct);
+router.post('/getManyProduct', getManyProduct);
 router.put('/ProductEdit',(req,res,next)=>{
   upload(req, res, (err) => {
     console.log(req.file)
@@ -117,11 +123,6 @@ router.post('/upload',(req,res,next)=>{
 })
 
 
-
-
-
-
-
 const initPassportLocal = require("../config/controler/passport/local")
 
 initPassportLocal();
@@ -133,7 +134,7 @@ router.get('/login',(req,res,next)=>{
 
 router.post('/login',
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/admin",
     failureRedirect: "/login",
   }))
 

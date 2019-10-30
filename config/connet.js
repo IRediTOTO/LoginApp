@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/Applogin', {useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/Project1', {useNewUrlParser: true,useUnifiedTopology: true});
 var blogSchema = new Schema({
     UserEmail:  String,
     UserPassword: String,
