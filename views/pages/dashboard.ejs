@@ -97,6 +97,10 @@
             Create new Product
           </button>
 
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newFeedback">
+            Create new feedback
+          </button>
+
           <!-- Modal new user-->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -162,6 +166,38 @@
                       <input type="file" class="form-control-file" id="productImage" name="productImage">
                     </div>
                     <button type="submit" class="btn btn-primary">Tạo product mới</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal fade mt-5" id="newFeedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="">Tạo feedback mới</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form  enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input type="name" class="form-control" id="productIDfeedback" name="productIDfeedback"
+                        placeholder="productID-feedback">
+                    </div>
+                    <div class="form-group">
+                      <input type="name" class="form-control" id="feedBackContent" name="feedBackContent"
+                        placeholder="feedBackContent">
+                    </div>
+                    
+                    <button type="submit" id="createFeedback" class="btn btn-primary">Tạo feedback mới</button>
                   </form>
                 </div>
                 <div class="modal-footer">

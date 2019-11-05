@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var  passport = require("passport")
+var jwt = require('jsonwebtoken');
 
 
 var newUser=require('../DB/create/newUser');
@@ -13,7 +14,7 @@ var getManyProduct=require('../DB/get/getManyProduct');
 var updateProduct=require('../DB/update/updateProduct');
 // var deleteProduct=require('../DB/delete/deleteProduct');
 var getNumberProducts=require('../DB/get/getNumberProducts');
-
+var newFeedback=require('../DB/create/newFeedback')
 
 
 var multer  = require('multer')
@@ -65,13 +66,18 @@ router.get('/test', (req, res, next) => {
 
 //trang admin
   //User
-router.get('/admin',(req,res,next)=>{
-  if (req.isAuthenticated()) {
-		next();
-	} else {
-		res.redirect('/login')
-	}
-},(req,res,next)=>{
+  var getCookieJWT = function(req, res, next){
+    try {
+      var data = jwt.verify(req.cookies['jwt'], 'your_jwt_secret')
+      if(data) {
+        next()
+      }
+    } catch (error) {
+      
+      res.redirect('/login')
+    }
+  }
+router.get('/admin',getCookieJWT,(req,res,next)=>{
   res.render('./pages/dashboard')
 })
 router.post('/createUser',newUser)
@@ -132,11 +138,29 @@ router.get('/login',(req,res,next)=>{
 })
 
 
-router.post('/login',
-  passport.authenticate("local", {
-    successRedirect: "/admin",
-    failureRedirect: "/login",
-  }))
+router.post('/login', function (req, res, next) {
+
+  passport.authenticate('local', {session: false}, (err, user, info) => {
+      console.log(err);
+      if (err || !user) {
+          return res.status(400).json({
+              message: info ? info.message : 'Login failed',
+              user   : user
+          });
+      }
+
+      req.login(user, {session: false}, (err) => {
+          if (err) {
+              res.send(err);
+          }
+          const token = jwt.sign(user ,'your_jwt_secret');
+          return res.json({token:token,something:"Helu"});
+      });
+  })
+  (req, res);
+
+});
+
 
 
 
@@ -154,6 +178,10 @@ router.post('/login',
 // API cho trang product
 router.post('/api',getNumberProducts);
 router.post('/api/:numpage',getManyProduct)
+
+
+//API cho feedback
+router.post('/newfeedback',newFeedback)
 
 
 
